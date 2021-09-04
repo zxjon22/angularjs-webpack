@@ -1,0 +1,8 @@
+:root {
+  --clr-background: green;
+}
+body {
+  background: var(--clr-background);
+  // post css should add webkit version.
+  animation: jon 1ms ease;
+}
