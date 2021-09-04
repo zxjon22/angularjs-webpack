@@ -8,6 +8,21 @@ const postcssNormalize = require('postcss-normalize');
 
 process.env.NODE_ENV = 'development';
 
+const postCssOptions = {
+  ident: 'postcss',
+  plugins: () => [
+    postCssFlexbugsFixes,
+    postcssPresetEnv({
+      autoprefixer: {
+        flexbox: 'no-2009'
+      },
+      stage: 3
+    }),
+    postcssNormalize()
+  ],
+  sourceMap: true
+};
+
 module.exports = {
   mode: 'development',
   target: 'web',
@@ -51,7 +66,17 @@ module.exports = {
       {
         test: /\.css$/,
         // NOTE: PostCSS is missing from here and SASS (below)
-        use: ['style-loader', 'css-loader']
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          {
+            // Apply postCSS fixes like autoprefixer and minifying
+            loader: 'postcss-loader',
+            options: postCssOptions
+          }
+        ]
       },
       {
         test: /\.s[ac]ss$/i,
@@ -65,20 +90,7 @@ module.exports = {
           {
             // Apply postCSS fixes like autoprefixer and minifying
             loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                postCssFlexbugsFixes,
-                postcssPresetEnv({
-                  autoprefixer: {
-                    flexbox: 'no-2009'
-                  },
-                  stage: 3
-                }),
-                postcssNormalize()
-              ],
-              sourceMap: true
-            }
+            options: postCssOptions
           },
           // Compiles Sass to CSS
           {
