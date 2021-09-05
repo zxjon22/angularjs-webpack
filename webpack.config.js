@@ -10,7 +10,7 @@ const postcssNormalize = require('postcss-normalize');
 
 process.env.NODE_ENV = 'development';
 
-module.exports = function (env, argv) {
+module.exports = function (env) {
   const isEnvDevelopment = env.development === true;
   const isEnvProduction = env.production === true;
 
