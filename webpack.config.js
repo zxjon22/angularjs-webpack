@@ -161,17 +161,48 @@ module.exports = function (env) {
           options: {
             // Disables attributes processing
             //attributes: false
+            attributes: {
+              list: [
+                '...',
+                {
+                  tag: 'svg-image',
+                  attribute: 'src',
+                  type: 'src'
+                }
+              ]
+            }
           }
         },
         {
-          test: /\.(bmp|jpg|png|gif|svg)$/,
+          test: /\.(bmp|jpg|png|gif)$/,
           use: {
             loader: 'url-loader',
             options: {
               limit: 10000,
               name: 'static/media/[name].[hash:8].[ext]'
             }
-          },
+          }
+        },
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: 'static/media/[name].[hash:8].[ext]'
+              }
+            },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: [
+                  { name: 'convertColors', params: { currentColor: '#6c63ff' } },
+                  { name: 'removeDimensions', active: true },
+                  { name: 'removeViewBox', active: false }
+                ]
+              }
+            }
+          ],
           exclude: /font.*/
         },
         {
