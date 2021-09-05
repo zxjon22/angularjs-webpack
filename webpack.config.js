@@ -8,8 +8,6 @@ const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssNormalize = require('postcss-normalize');
 
-process.env.NODE_ENV = 'development';
-
 module.exports = function (env) {
   const isEnvDevelopment = env.development === true;
   const isEnvProduction = env.production === true;
@@ -30,7 +28,9 @@ module.exports = function (env) {
   };
 
   return {
-    mode: 'development',
+    mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
+    // Stop compilation early in production
+    bail: isEnvProduction,
     target: 'web',
     devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
     entry: './src/index',
