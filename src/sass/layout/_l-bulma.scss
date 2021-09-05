@@ -1,0 +1,40 @@
+// Customisations to Bulma
+@import 'bulma/sass/utilities/initial-variables';
+@import 'bulma/sass/utilities/functions';
+
+// Accent color for undraw svgs
+$accent: #f50057;
+$accent-invert: findColorInvert($accent);
+$accent-light: findLightColor($accent);
+$accent-dark: findDarkColor($accent);
+
+$custom-colors: (
+  'accent': (
+    $accent,
+    findColorInvert($accent),
+    findLightColor($accent),
+    findDarkColor($accent)
+  )
+);
+
+// Don't force a vertical scrollbar - makes modals jump.
+// See https://github.com/jgthms/bulma/issues/1293
+$body-overflow-y: auto;
+
+// Make the modal body background lighter.
+$modal-background-background-color: rgba(0, 0, 0, 0.4);
+
+// Make rounded corners on toasts match Snackbar
+$toast-border-radius: $radius;
+
+// Prefer yellow on selected table rows vs is-primary
+$table-row-active-background-color: findLightColor($yellow);
+$table-row-active-color: $grey-dark;
+
+@import 'bulma/bulma';
+
+// Fix dark line under is-selected table row
+.table tr.is-selected td,
+.table tr.is-selected th {
+  border-color: $grey-lightest;
+}

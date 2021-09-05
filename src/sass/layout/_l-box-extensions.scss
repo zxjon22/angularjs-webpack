@@ -1,0 +1,11 @@
+.box {
+  &.is-contained {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &.is-small {
+      max-width: 600px;
+    }    
+  }
+}

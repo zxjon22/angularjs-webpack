@@ -1,0 +1,22 @@
+﻿<section class="my-3 container is-max-widescreen is-mobile">
+  <div class="level">
+    <div class="level-left">
+      <div class="level-item columns">
+        <div class="column is-narrow is-hidden-touch" style="width: 240px"></div>
+        <div class="column is-size-7 has-text-centered-mobile">
+          &copy; 2001, {{vm.year}} Acme Computer Company Ltd.
+        </div>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <span
+          class="is-size-7"
+          translate="footer.version"
+          translate-value-version="{{::vm.version}}"
+          >{{::vm.version}}</span
+        >
+      </div>
+    </div>
+  </div>
+</section>

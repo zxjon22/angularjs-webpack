@@ -156,6 +156,14 @@ module.exports = function (env) {
           ].filter(Boolean)
         },
         {
+          test: /\.html$/i,
+          loader: 'html-loader',
+          options: {
+            // Disables attributes processing
+            //attributes: false
+          }
+        },
+        {
           test: /\.(bmp|jpg|png|gif|svg)$/,
           use: {
             loader: 'url-loader',

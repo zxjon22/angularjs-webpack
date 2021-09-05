@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app" ng-strict-di="true" class="has-background-primary-light">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="favicon.ico" />
     <title>App Name</title>
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
   <body>
     <!--
@@ -17,6 +22,6 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <i class="fa fa-home"></i> Welcome to Webpack!
+    <div ui-view class="ng-cloak entrance"></div>
   </body>
 </html>
