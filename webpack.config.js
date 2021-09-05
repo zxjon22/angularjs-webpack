@@ -35,7 +35,7 @@ module.exports = function (env) {
     devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
     entry: './src/index',
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
       filename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].js'
