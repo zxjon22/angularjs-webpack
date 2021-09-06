@@ -42,7 +42,11 @@ module.exports = function (env) {
       publicPath: '/',
       filename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].js'
-        : isEnvDevelopment && 'static/js/bundle.js'
+        : isEnvDevelopment && 'static/js/bundle.js',
+      // There are also additional JS chunk files if you use code splitting.
+      chunkFilename: isEnvProduction
+        ? 'static/js/[name].[contenthash:8].chunk.js'
+        : isEnvDevelopment && 'static/js/[name].chunk.js'
     },
     devServer: {
       disableHostCheck: true,
@@ -116,7 +120,14 @@ module.exports = function (env) {
             preset: ['default', { minifyFontValues: { removeQuotes: false } }]
           }
         })
-      ]
+      ],
+      // Automatically split vendor and commons
+      // https://twitter.com/wSokra/status/969633336732905474
+      // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+      splitChunks: {
+        chunks: 'all',
+        name: isEnvDevelopment
+      }
     },
     module: {
       rules: [
