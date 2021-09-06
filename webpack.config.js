@@ -39,7 +39,7 @@ module.exports = function (env) {
     entry: './src/index',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/',
+      publicPath: './',
       filename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].js'
         : isEnvDevelopment && 'static/js/bundle.js',
@@ -56,7 +56,8 @@ module.exports = function (env) {
       overlay: true,
       historyApiFallback: true,
       hot: true,
-      transportMode: 'ws'
+      transportMode: 'ws',
+      publicPath: '/'
       //stats: 'minimal',
       //headers: { 'Access-Control-Allow-Origin': '*' },
       //https: false
