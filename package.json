@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.development --port 3000",
+    "start": "webpack-dev-server --env.development --port 3000 --open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --env.production",
     "clean": "rimraf dist"
@@ -57,8 +57,12 @@
     "angular": "^1.8.2",
     "angular-animate": "^1.8.2",
     "angular-cookies": "^1.8.2",
+    "angular-dynamic-locale": "^0.1.37",
     "angular-sanitize": "^1.8.2",
+    "angular-translate": "^2.19.0",
+    "angular-translate-loader-static-files": "^2.19.0",
     "angular-ui-router": "^1.0.29",
+    "animate.css": "^3.7.2",
     "bulma": "^0.9.3",
     "font-awesome": "^4.7.0",
     "simple-line-icons": "^2.5.5"
@@ -69,6 +73,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^4.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

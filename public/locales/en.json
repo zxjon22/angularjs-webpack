@@ -1,0 +1,42 @@
+{
+  "buttons": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "discard": "Discard",
+    "close": "Close",
+    "save": "Save",
+    "save-changes": "Save Changes",
+    "edit": "Edit",
+    "new": "New",
+    "new-elipses": "New...",
+    "undo": "Undo",
+    "try-again": "Try Again"
+  },
+  "errors": {
+    "unspecified-error-occurred": "An unexpected error has occurred. Please try again later.",
+    "server-down": "Cannot connect to the destination server. The target URL maybe incorrect or the server is down.",
+    "something-went-wrong": "Something went wrong",
+    "our-devs-fixing-it": "Our development team has been notified and is investigating the issue."
+  },
+  "navbar": {
+    "user-menu": {
+      "sign-out": "Sign Out"
+    }
+  },
+  "footer": {
+    "version": "Version {{version}}"
+  },
+  "not-found": {
+    "title": "Not Found",
+    "intro": "Oops! You're lost.",
+    "message": "We cannot find the page you are looking for.",
+    "buttons": {
+      "return-home": "Return home"
+    }
+  },
+  "home": {
+    "title": "Home"
+  }
+}

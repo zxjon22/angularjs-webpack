@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -38,7 +39,7 @@ module.exports = function (env) {
     devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
     entry: './src/index',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: isEnvProduction ? path.resolve(__dirname, 'dist') : undefined,
       publicPath: './',
       filename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].js'
@@ -49,6 +50,8 @@ module.exports = function (env) {
         : isEnvDevelopment && 'static/js/[name].chunk.js'
     },
     devServer: {
+      contentBase: [`${__dirname}/public/`],
+      watchContentBase: true,
       disableHostCheck: true,
       compress: true,
       clientLogLevel: 'none',
@@ -63,6 +66,10 @@ module.exports = function (env) {
       //https: false
     },
     plugins: [
+      isEnvProduction &&
+        new CopyPlugin({
+          patterns: [{ from: `${__dirname}/public`, to: `${__dirname}/dist` }]
+        }),
       new CaseSensitivePathsPlugin(),
       new HtmlWebpackPlugin({
         template: 'src/index.html'
@@ -146,7 +153,15 @@ module.exports = function (env) {
           test: /\.css$/,
           use: [
             // Creates `style` nodes from JS strings
-            'style-loader',
+            isEnvDevelopment && require.resolve('style-loader'),
+            isEnvProduction && {
+              loader: MiniCssExtractPlugin.loader,
+              // css is located in `static/css`, use '../../' to locate index.html folder
+              // in production `paths.publicUrlOrPath` can be a relative path
+              options: {
+                publicPath: '../../'
+              }
+            },
             // Translates CSS into CommonJS
             'css-loader',
             {
@@ -154,7 +169,7 @@ module.exports = function (env) {
               loader: 'postcss-loader',
               options: postCssOptions
             }
-          ]
+          ].filter(Boolean)
         },
         {
           test: /\.s[ac]ss$/i,
