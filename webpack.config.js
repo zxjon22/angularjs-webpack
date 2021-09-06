@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postcssPresetEnv = require('postcss-preset-env');
@@ -55,6 +56,7 @@ module.exports = function (env) {
       //https: false
     },
     plugins: [
+      new CaseSensitivePathsPlugin(),
       new HtmlWebpackPlugin({
         template: 'src/index.html'
       }),
