@@ -1,5 +1,5 @@
 // https://dev.to/antonmelnyk/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5
-//const webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -12,9 +12,23 @@ const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssNormalize = require('postcss-normalize');
 
-module.exports = function (env) {
-  const isEnvDevelopment = env.development === true;
-  const isEnvProduction = env.production === true;
+module.exports = function (webpackEnv) {
+  const isEnvDevelopment = webpackEnv.development === true;
+  const isEnvProduction = webpackEnv.production === true;
+
+  process.env.NODE_ENV =
+    process.env.NODE_ENV || isEnvProduction
+      ? 'production'
+      : isEnvDevelopment
+      ? 'development'
+      : undefined;
+
+  process.env.BABEL_ENV = process.env.NODE_ENV;
+  const getClientEnvironment = require('./env');
+
+  // NOTE: No trailing slash as `${PUBLIC_URL}/foo/bar` looks better than
+  //       `${PUBLIC_URL}foo/bar`.
+  const env = getClientEnvironment('.');
 
   const postCssOptions = {
     ident: 'postcss',
@@ -71,6 +85,7 @@ module.exports = function (env) {
           patterns: [{ from: `${__dirname}/public`, to: `${__dirname}/dist` }]
         }),
       new CaseSensitivePathsPlugin(),
+      new webpack.DefinePlugin(env.stringified),
       new HtmlWebpackPlugin({
         template: 'src/index.html'
       }),

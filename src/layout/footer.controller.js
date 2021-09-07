@@ -9,6 +9,7 @@ function FooterController(appSettings) {
   vm.title = 'FooterController';
   vm.version = appSettings.version;
   vm.year = new Date().getFullYear();
+  vm.companyName = appSettings.companyName;
 
   activate();
 
