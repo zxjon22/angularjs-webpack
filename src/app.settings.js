@@ -1,6 +1,11 @@
 import angular from 'angular';
 
+const env = process.env;
+
 angular.module('app').constant('appSettings', {
-  debugMode: process.env.NODE_ENV,
-  version: '0.1.dev'
+  appName: env.AJS_APP_NAME,
+  companyShortName: env.AJS_APP_COMPANY_SHORT_NAME,
+  companyName: env.AJS_APP_COMPANY_NAME,
+  debugMode: env.NODE_ENV === 'development',
+  version: env.AJS_APP_VERSION
 });
