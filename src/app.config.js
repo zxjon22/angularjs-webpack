@@ -1,5 +1,6 @@
 import angular from 'angular';
 import './components/transitionhooks.service';
+import './components/i18n-loader.service';
 
 angular.module('app').config(config).run(run);
 
@@ -21,7 +22,7 @@ function config(
 ) {
   $qProvider.errorOnUnhandledRejections(appSettings.debugMode);
   $logProvider.debugEnabled(appSettings.debugMode);
-  $translateProvider.useStaticFilesLoader({ prefix: 'locales/', suffix: '.json' });
+  $translateProvider.useLoader('i18nLoader');
 
   // NOTE: en-GB is registered so that the date/time formats are used even though
   //       the translations fall back to en.
