@@ -2,11 +2,12 @@
 
 angular.module('app').controller('NavController', NavController);
 
-NavController.$inject = ['appSettings', '$window', '$scope'];
+NavController.$inject = ['$window', '$scope', 'userProfileService'];
 
-function NavController(appSettings, $window, $scope) {
+function NavController($window, $scope, userProfileService) {
   var vm = this;
   vm.title = 'NavController';
+  vm.userProfile = userProfileService.getUserProfile;
   vm.signOut = signOut;
   vm.toggleNavbarMenu = toggleNavbarMenu;
   vm.showNavbarMenu = false;

@@ -50,18 +50,7 @@ beforeEach(
     $provide.factory('userProfileService', function ($q) {
       var service = jasmine.createSpyObj('userProfileService', {
         getUserProfile: userProfile,
-        loadUserProfile: $q.resolve(userProfile),
-        clearUserProfile: undefined
-      });
-
-      return service;
-    });
-
-    $provide.factory('lookupsService', function ($q) {
-      var service = jasmine.createSpyObj('lookupsService', {
-        load: $q.resolve([]),
-        getSkuPaymentSplitTypes: $q.resolve([]),
-        getSellerStores: $q.resolve([])
+        loadUserProfile: $q.resolve(userProfile)
       });
 
       return service;

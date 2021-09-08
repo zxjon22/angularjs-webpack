@@ -7,7 +7,13 @@
 
   <div class="content">
     <div class="box is-contained">
-      <h1 class="title is-3">Welcome, Jonathan</h1>
+      <h1
+        class="title is-3"
+        translate="home.welcome"
+        translate-value-first-name="{{vm.userProfile.firstName}}"
+      >
+        Welcome
+      </h1>
       <p class="is-size-4 has-text-grey">
         <i class="fa fa-home"></i> A free hour, when our power of choice is untrammelled and when
         nothing prevents our being able to do what we like best.

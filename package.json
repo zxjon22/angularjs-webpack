@@ -37,6 +37,7 @@
       "dist/"
     ],
     "globals": {
+      "angular": true,
       "inject": true
     },
     "env": {

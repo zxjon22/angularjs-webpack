@@ -2,11 +2,12 @@ import angular from 'angular';
 
 angular.module('app').controller('HomePageController', HomePageController);
 
-HomePageController.$inject = [];
+HomePageController.$inject = ['userProfile'];
 
-function HomePageController() {
+function HomePageController(userProfile) {
   var vm = this;
   vm.title = 'HomePageController';
+  vm.userProfile = userProfile;
 
   activate();
 
