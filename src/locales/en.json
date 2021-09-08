@@ -37,6 +37,7 @@
     }
   },
   "home": {
-    "title": "Home"
+    "title": "Home",
+    "welcome": "Welcome, {{firstName}}"
   }
 }

@@ -17,9 +17,17 @@ describe('HomePageController', function () {
   }));
 
   it('Renders correctly', function () {
+    var userProfile = {
+      id: 2,
+      firstName: 'Joe',
+      lastName: 'Bloggs',
+      locale: 'en'
+    };
+
     var $scope = $rootScope.$new();
     var vm = $controller('HomePageController as vm', {
-      $scope: $scope
+      $scope: $scope,
+      userProfile: userProfile
     });
 
     // Example of compiling the template. We're not using $templatecache with Webpack so we
@@ -28,7 +36,8 @@ describe('HomePageController', function () {
     var el = $compile(require('./homepage.template.html'))($scope);
     $scope.$apply();
 
-    expect(el.html()).toContain('Welcome, Jonathan');
     expect(vm.title).toEqual('HomePageController');
+    expect(vm.userProfile).toEqual(userProfile);
+    expect(el.html()).toContain(`Welcome, ${userProfile.firstName}`);
   });
 });

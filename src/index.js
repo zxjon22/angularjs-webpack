@@ -1,11 +1,13 @@
-// Application
+// Application - these must come first.
 import './app.module';
 import './app.config';
 import './app.settings';
 import './app.routes';
 
-// Components
-import './components/svg-image.directive';
+// Dynamically require so Webpack finds them all.
+// Allows porting from iife components without code changes.
+const components = require.context('.', true, /^.*\/(?!.*spec|app|setupTests|index).*\.js$/);
+components.keys().forEach(components);
 
 // CSS
 import 'animate.css';

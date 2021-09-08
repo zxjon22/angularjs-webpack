@@ -40,26 +40,14 @@ function routes($stateProvider) {
       // User profile is guaranteed to be loaded before the controller is
       // instantiated
       abstract: true,
-      parent: 'layout'
-      /*resolve: {
+      parent: 'layout',
+      resolve: {
         userProfile: [
-          'appSettings',
           'userProfileService',
-          'lookupsService',
-          function (appSettings, userProfileService, lookupsService) {
-            var user;
-
-            return userProfileService
-              .loadUserProfile()
-              .then(function (authUser) {
-                user = authUser;
-                return lookupsService.load(user);
-              })
-              .then(function () {
-                return user;
-              });
+          function (userProfileService) {
+            return userProfileService.loadUserProfile();
           }
         ]
-      }*/
+      }
     });
 }

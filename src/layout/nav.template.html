@@ -34,8 +34,8 @@
             aria-expanded="false"
             ng-click="vm.toggleUserMenu($event)"
           >
-            <span class="icon"><i class="icon-user img-circle nav-fa-silhouette"></i></span>
-            <span> Jon</span>
+            <span class="icon"><i class="icon-user img-circle nav-fa-silhouette"></i>&nbsp;</span>
+            <span> {{::vm.userProfile().firstName}}</span>
           </a>
 
           <div class="navbar-dropdown is-boxed is-right">
