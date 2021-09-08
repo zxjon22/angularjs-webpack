@@ -74,8 +74,8 @@ module.exports = function (webpackEnv) {
       historyApiFallback: true,
       hot: true,
       transportMode: 'ws',
-      publicPath: '/'
-      //stats: 'minimal',
+      publicPath: '/',
+      stats: 'minimal'
       //headers: { 'Access-Control-Allow-Origin': '*' },
       //https: false
     },
