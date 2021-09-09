@@ -1,4 +1,5 @@
 // https://dev.to/antonmelnyk/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5
+// https://github.com/facebook/create-react-app/tree/main/packages/react-scripts
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
