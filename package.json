@@ -8,7 +8,8 @@
     "test": "karma start karma.conf.js --single-run",
     "test:watch": "karma start karma.conf.js --browsers=Chrome",
     "build": "webpack --env.production",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "lint": "eslint --ext .js src/ && prettier --check src/"
   },
   "keywords": [],
   "author": "",
