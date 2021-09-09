@@ -4,7 +4,7 @@ An example [AngularJS](https://angularjs.org/) application that uses [Webpack](h
 
 ## Overview
 
-Although `AngularJS` is deprecated now and no longer supported by Google, I wanted to extend the life of some old applications.
+Although `AngularJS` is now deprecated, I wanted to extend the life of some old applications.
 
 These apps don't warrant the engineering effort to port them to another framework since they're likely to be replaced by other things in the next 18 months.
 
@@ -16,7 +16,7 @@ These apps were based on boilerplate from [John Papa's](https://johnpapa.net/) e
 
 Although this has served us well for several years, I wanted to switch to more modern tooling to improve developer experience, without having to rewrite the applications.
 
-[Create React App](https://create-react-app.dev/) does an excellent job setting up new projects for `React` and I wanted a similar development experience when working on `AngularJS`.
+[Create React App](https://create-react-app.dev/) does an excellent job setting up new projects for `React` and I wanted a similar development experience when working on old `AngularJS` stuff.
 
 It was also a good excuse to look more deeply how `Webpack` and `Babel` work.
 
@@ -46,7 +46,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser. \
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
@@ -57,13 +57,12 @@ Launches the `Karma` test runner and runs all unit tests once.
 
 ### `npm run test:watch`
 
-Launches the `Karma` test runner in the interactive watch mode.\
+Launches the `Karma` test runner in the interactive watch mode.
 
 ### `npm run build`
 
 Builds the app for production to the `dist` folder.\
-It optimizes the build for the best performance.\
-The build is minified and the filenames include the hashes.
+It optimizes the build for the best performance. The build is minified and the filenames include the hashes.
 
 To run the production build, type `npx serve ./dist`
 
