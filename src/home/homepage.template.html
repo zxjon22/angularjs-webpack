@@ -10,7 +10,7 @@
       <h1
         class="title is-3"
         translate="home.welcome"
-        translate-value-first-name="{{vm.userProfile.firstName}}"
+        translate-value-first-name="{{::vm.userProfile.firstName}}"
       >
         Welcome
       </h1>
@@ -34,8 +34,11 @@
           <h3>Users Application</h3>
           <p>A full sample application to search for, edit and create users.</p>
         </div>
-        <div class="column is-6 has-text-danger">
-          <svg-image class="has-ratio" src="../assets/undraw_experience_design_eq3j.svg" />
+        <div class="column is-6">
+          <svg-image
+            class="has-ratio has-text-accent"
+            src="../assets/undraw_experience_design_eq3j.svg"
+          />
         </div>
       </div>
     </div>

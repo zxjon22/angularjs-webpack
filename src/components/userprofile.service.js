@@ -12,8 +12,7 @@
     var fakeUserProfile = {
       id: 2,
       firstName: 'Jonathan',
-      lastName: 'Needle',
-      locale: 'en-GB'
+      lastName: 'Needle'
     };
 
     var service = {
@@ -36,7 +35,7 @@
           userProfile = angular.copy(response.data);
 
           if (!userProfile.locale) {
-            userProfile.locale = 'en';
+            userProfile.locale = localeService.getClientLocale();
           }
 
           return localeService.switchLanguage(userProfile.locale);

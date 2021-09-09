@@ -7,7 +7,8 @@
 
   function localeService($q, $translate, tmhDynamicLocale) {
     var service = {
-      switchLanguage: switchLanguage
+      switchLanguage: switchLanguage,
+      getClientLocale: getClientLocale
     };
 
     return service;
@@ -40,6 +41,15 @@
 
       $translate.use(key);
       return $q.when(key);
+    }
+
+    /**
+     * Returns the current browser/client's language key as seen by
+     * angular-translate.
+     * @returns {string} - Language code.
+     */
+    function getClientLocale() {
+      return $translate.resolveClientLocale();
     }
   }
 })();

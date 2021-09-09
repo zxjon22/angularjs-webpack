@@ -39,6 +39,16 @@
           </a>
 
           <div class="navbar-dropdown is-boxed is-right">
+            <a class="navbar-item" ng-click="vm.togglePseudoLocalizer()">
+              <span class="icon"><i class="icon-location-pin" aria-hidden="true"></i></span>
+              Pseudo-Localizer
+              <span class="icon"
+                ><i class="fa fa-check menu-check" ng-show="vm.isPseudoLocalized"></i
+              ></span>
+            </a>
+
+            <hr class="navbar-divider" />
+
             <a class="navbar-item" ng-click="vm.signOut()">
               <span class="icon"><i class="icon-key" aria-hidden="true"></i></span>
               <span translate="navbar.user-menu.sign-out"></span>
