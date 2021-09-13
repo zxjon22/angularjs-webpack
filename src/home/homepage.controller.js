@@ -1,15 +1,16 @@
-import angular from 'angular';
+(function () {
+  'use strict';
+  angular.module('app').controller('HomePageController', HomePageController);
 
-angular.module('app').controller('HomePageController', HomePageController);
+  HomePageController.$inject = ['userProfile'];
 
-HomePageController.$inject = ['userProfile'];
+  function HomePageController(userProfile) {
+    var vm = this;
+    vm.title = 'HomePageController';
+    vm.userProfile = userProfile;
 
-function HomePageController(userProfile) {
-  var vm = this;
-  vm.title = 'HomePageController';
-  vm.userProfile = userProfile;
+    activate();
 
-  activate();
-
-  function activate() {}
-}
+    function activate() {}
+  }
+})();

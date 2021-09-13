@@ -1,20 +1,20 @@
-import angular from 'angular';
-import './homepage.controller';
+(function () {
+  'use strict';
+  angular.module('app').config(routes);
 
-angular.module('app').config(routes);
+  routes.$inject = ['$stateProvider'];
 
-routes.$inject = ['$stateProvider'];
-
-function routes($stateProvider) {
-  $stateProvider.state('home', {
-    url: '/',
-    parent: 'master',
-    views: {
-      '@layout': {
-        templateUrl: 'home/homepage.template.html',
-        controller: 'HomePageController',
-        controllerAs: 'vm'
+  function routes($stateProvider) {
+    $stateProvider.state('home', {
+      url: '/',
+      parent: 'master',
+      views: {
+        '@layout': {
+          templateUrl: 'home/homepage.template.html',
+          controller: 'HomePageController',
+          controllerAs: 'vm'
+        }
       }
-    }
-  });
-}
+    });
+  }
+})();

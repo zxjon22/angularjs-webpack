@@ -1,51 +1,50 @@
-import angular from 'angular';
-import './components/transitionhooks.service';
-import './components/i18n-loader.service';
+(function () {
+  'use strict';
+  angular.module('app').config(config).run(run);
 
-angular.module('app').config(config).run(run);
+  config.$inject = [
+    '$translateProvider',
+    '$qProvider',
+    '$logProvider',
+    'appSettings',
+    'tmhDynamicLocaleProvider'
+  ];
 
-config.$inject = [
-  '$translateProvider',
-  '$qProvider',
-  '$logProvider',
-  'appSettings',
-  'tmhDynamicLocaleProvider'
-];
+  /* eslint max-params: ["error", 12] */
+  function config(
+    $translateProvider,
+    $qProvider,
+    $logProvider,
+    appSettings,
+    tmhDynamicLocaleProvider
+  ) {
+    $qProvider.errorOnUnhandledRejections(appSettings.debugMode);
+    $logProvider.debugEnabled(appSettings.debugMode);
+    $translateProvider.useLoader('i18nLoader');
 
-/* eslint max-params: ["error", 12] */
-function config(
-  $translateProvider,
-  $qProvider,
-  $logProvider,
-  appSettings,
-  tmhDynamicLocaleProvider
-) {
-  $qProvider.errorOnUnhandledRejections(appSettings.debugMode);
-  $logProvider.debugEnabled(appSettings.debugMode);
-  $translateProvider.useLoader('i18nLoader');
+    // NOTE: en-GB is registered so that the date/time formats are used even though
+    //       the translations fall back to en.
+    $translateProvider
+      .registerAvailableLanguageKeys(['qps-ploc', 'en', 'en-GB', 'fr', 'it', 'de', 'es'], {
+        'en-*': 'en',
+        'fr-*': 'fr',
+        'it-*': 'it',
+        'de-*': 'de',
+        'es-*': 'es'
+      })
+      .determinePreferredLanguage()
+      .fallbackLanguage('en')
+      .useSanitizeValueStrategy('sanitizeParameters');
 
-  // NOTE: en-GB is registered so that the date/time formats are used even though
-  //       the translations fall back to en.
-  $translateProvider
-    .registerAvailableLanguageKeys(['qps-ploc', 'en', 'en-GB', 'fr', 'it', 'de', 'es'], {
-      'en-*': 'en',
-      'fr-*': 'fr',
-      'it-*': 'it',
-      'de-*': 'de',
-      'es-*': 'es'
-    })
-    .determinePreferredLanguage()
-    .fallbackLanguage('en')
-    .useSanitizeValueStrategy('sanitizeParameters');
+    tmhDynamicLocaleProvider
+      .localeLocationPattern('locales/angular-locale_{{locale}}.js')
+      .defaultLocale('en');
+  }
 
-  tmhDynamicLocaleProvider
-    .localeLocationPattern('locales/angular-locale_{{locale}}.js')
-    .defaultLocale('en');
-}
+  run.$inject = ['transitionHooksService'];
 
-run.$inject = ['transitionHooksService'];
-
-function run(transitionHooksService) {
-  // UI-Router transition hooks
-  transitionHooksService.registerTransitionHooks();
-}
+  function run(transitionHooksService) {
+    // UI-Router transition hooks
+    transitionHooksService.registerTransitionHooks();
+  }
+})();

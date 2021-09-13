@@ -1,15 +1,16 @@
-import angular from 'angular';
+(function () {
+  'use strict';
+  angular.module('app').controller('SidebarController', SidebarController);
 
-angular.module('app').controller('SidebarController', SidebarController);
+  SidebarController.$inject = [];
 
-SidebarController.$inject = [];
+  function SidebarController() {
+    //var vm = this;
 
-function SidebarController() {
-  //var vm = this;
+    activate();
 
-  activate();
+    ////////////////
 
-  ////////////////
-
-  function activate() {}
-}
+    function activate() {}
+  }
+})();
