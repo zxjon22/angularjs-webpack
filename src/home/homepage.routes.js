@@ -11,7 +11,7 @@ function routes($stateProvider) {
     parent: 'master',
     views: {
       '@layout': {
-        template: require('./homepage.template.html'),
+        templateUrl: 'home/homepage.template.html',
         controller: 'HomePageController',
         controllerAs: 'vm'
       }

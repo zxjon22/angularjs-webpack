@@ -16,20 +16,20 @@ function routes($stateProvider) {
       abstract: true,
       views: {
         '@': {
-          template: require('./layout.template.html')
+          templateUrl: 'layout/layout.template.html'
         },
         'nav@layout': {
-          template: require('./nav.template.html'),
+          templateUrl: 'layout/nav.template.html',
           controller: 'NavController',
           controllerAs: 'vm'
         },
         'sidebar@layout': {
-          template: require('./sidebar.template.html'),
+          templateUrl: 'layout/sidebar.template.html',
           controller: 'SidebarController',
           controllerAs: 'vm'
         },
         'footer@layout': {
-          template: require('./footer.template.html'),
+          templateUrl: 'layout/footer.template.html',
           controller: 'FooterController',
           controllerAs: 'vm'
         }

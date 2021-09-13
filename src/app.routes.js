@@ -13,6 +13,6 @@ function routes($stateProvider, $urlRouterProvider) {
   $stateProvider.state('not-found', {
     // Catch all
     url: '*path',
-    template: require('./layout/notfound.template.html')
+    templateUrl: 'layout/notfound.template.html'
   });
 }

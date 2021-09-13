@@ -9,6 +9,17 @@ import './app.routes';
 const components = require.context('.', true, /^.*\/(?!.*spec|app|setupTests|index).*\.js$/);
 components.keys().forEach(components);
 
+// Populate the AngularJS $templateCache to avoid having to change `templateUrl: <path>` to
+// `template: require('<path>')`. Adding some third party components don't work with template
+// strings.
+angular.module('app').run([
+  '$templateCache',
+  ($templateCache) => {
+    const templates = require.context('.', true, /^.*\.template\.html/);
+    templates.keys().forEach((key) => $templateCache.put(key.slice(2), templates(key)));
+  }
+]);
+
 // CSS
 import 'animate.css';
 import 'font-awesome/css/font-awesome.css';
