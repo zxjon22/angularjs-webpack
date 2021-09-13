@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "analyze": "webpack --env.production --env.analyze",
     "start": "webpack-dev-server --env.development --port 3000 --open",
     "test": "karma start karma.conf.js --single-run",
     "test:watch": "karma start karma.conf.js --browsers=Chrome",
-    "build": "webpack --env.production",
+    "build": "npm run clean && webpack --env.production --display minimal",
     "clean": "rimraf dist",
-    "lint": "eslint --ext .js src/ && prettier --check src/"
+    "lint": "eslint --ext .js src/ && prettier --check src/",
+    "format": "prettier-eslint \"**/*.{js,json,html,scss,css}\" --write"
   },
   "keywords": [],
   "author": "",
@@ -71,6 +73,7 @@
     "animate.css": "^3.7.2",
     "bulma": "^0.9.3",
     "font-awesome": "^4.7.0",
+    "jquery": "^2.2.4",
     "simple-line-icons": "^2.5.5"
   },
   "devDependencies": {
@@ -117,6 +120,7 @@
     "svgo-loader": "^3.0.0",
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
   }

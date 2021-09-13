@@ -1,5 +1,3 @@
-// https://dev.to/antonmelnyk/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5
-// https://github.com/facebook/create-react-app/tree/main/packages/react-scripts
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -7,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
@@ -16,6 +15,7 @@ const postcssNormalize = require('postcss-normalize');
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv.development === true;
   const isEnvProduction = webpackEnv.production === true;
+  const isEnvAnalyzeBundle = isEnvProduction && webpackEnv.analyze === true;
 
   process.env.NODE_ENV =
     process.env.NODE_ENV || isEnvProduction
@@ -81,12 +81,16 @@ module.exports = function (webpackEnv) {
       //https: false
     },
     plugins: [
+      isEnvAnalyzeBundle && new BundleAnalyzerPlugin(),
       isEnvProduction &&
         new CopyPlugin({
           patterns: [{ from: `${__dirname}/public`, to: `${__dirname}/dist` }]
         }),
       new CaseSensitivePathsPlugin(),
       new webpack.DefinePlugin(env.stringified),
+      new webpack.ProvidePlugin({
+        'window.jQuery': 'jquery'
+      }),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
@@ -118,7 +122,13 @@ module.exports = function (webpackEnv) {
           // both options are optional
           filename: 'static/css/[name].[contenthash:8].css',
           chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
-        })
+        }),
+      // Moment.js is an extremely popular library that bundles large locale files
+      // by default due to how webpack interprets its code. This is a practical
+      // solution that requires the user to opt into importing specific locales.
+      // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
+      // You can remove this if you don't use Moment.js:
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ].filter(Boolean),
     optimization: {
       minimize: isEnvProduction,
