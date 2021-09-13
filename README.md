@@ -66,6 +66,10 @@ It optimizes the build for the best performance. The build is minified and the f
 
 To run the production build, type `npx serve ./dist`
 
+### `npm run analyze`
+
+Runs `webpack-bundle-analyzer` in server mode.
+
 ### `npm run lint`
 
 Runs the application's files through `ESlint` and `Prettier` to verify code style and correctness.
@@ -73,3 +77,7 @@ Runs the application's files through `ESlint` and `Prettier` to verify code styl
 ### `npm run clean`
 
 Cleans the `dist` folder.
+
+### `npm run format`
+
+> Warning: This command reformats all your source code to match `Pretter's` style.
