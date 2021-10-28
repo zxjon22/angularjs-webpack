@@ -81,3 +81,58 @@ Cleans the `dist` folder.
 ### `npm run format`
 
 > Warning: This command reformats all your source code to match `Pretter's` style.
+
+## An update from doing this in practice
+
+In general, this was pretty easy to do:
+
+1. Migrate dependencies to `NPM`. Where a library does not exist on `NPM`, use the special github syntax to reference it:
+
+```json
+{
+  "dependencies": {
+    "ng-dialog": "^1.4.0",
+    "ng-percentage-filter": "github:timhettler/ng-percentage-filter"
+  }
+}
+```
+
+2. Update `app.module.js` to import the required modules and register them:
+
+```js
+import angular from 'angular';
+import 'angular-animate';
+import 'angular-sanitize';
+import 'angular-cookies';
+import 'angular-ui-router';
+import 'angular-translate';
+import 'angular-dynamic-locale';
+
+angular.module('app', [
+  // Angular modules
+  'ngSanitize',
+  'ngAnimate',
+  'ngCookies',
+
+  // Custom modules
+
+  // 3rd Party Modules
+  'pascalprecht.translate',
+  'tmh.dynamicLocale',
+  'ui.router'
+]);
+```
+
+3. Unfortunatley, the `Karma` tests did need a slight change as `angular-mock`'s `module` conflicts with `Webpack`'s `module`. The simplest way to resolve this was just adding the `window.` prefix:
+
+```js
+beforeEach(window.module('app', { svgImageDirective: {} }));
+```
+
+Or reference `angular-mocks` in full:
+
+```js
+beforeEach(angular.mock.module('app', { svgImageDirective: {} }));
+```
+
+4. Adding `AngularJS` locales. It was easier to add the languages we support to the `public/locales` folder rather than trying to reference them from the `NPM` package and have `angular-dynamic-locale` load them as required.
