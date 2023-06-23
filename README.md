@@ -135,4 +135,6 @@ beforeEach(angular.mock.module('app', { svgImageDirective: {} }));
 
 4. Adding `AngularJS` locales. It was easier to add the languages we support to the `public/locales` folder rather than trying to reference them from the `NPM` package and have `angular-dynamic-locale` load them as required. The localisation files for the application itself are served via a Webpack chunk (see `src/locales`).
 
-5. Done!
+5. Ran `npm format` to reformat the source code to match the standards enforced by `Prettier`.
+
+6. Done!
